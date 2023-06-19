@@ -39,7 +39,7 @@ public class BoardDAO {
 			pstmt.setString(2, btitle);
 			pstmt.setString(3, bcontent);
 
-			pstmt.execute();
+			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -185,7 +185,7 @@ public class BoardDAO {
 
 			pstmt.setString(1, bid);
 
-			pstmt.execute();
+			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

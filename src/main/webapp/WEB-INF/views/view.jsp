@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>글 내용 보기</title>
 <script>
-function confirmDelete() {
+function confirmDelete(bid) {
     if (confirm("정말로 삭제하시겠습니까?")) {
-        window.location.href = "delete?bid=${dto.bid}";
+        window.location.href = "delete?bid=" + bid;
     }
 }
 </script>
@@ -44,7 +44,7 @@ function confirmDelete() {
 		<tr>
 			<td colspan=2>
 			<input type="button" value="수정" onclick="javascript:window.location='modify_form?bid=${dto.bid}'"/>
-			<input type="button" value="삭제" onclick="confirmDelete()"/>
+			<input type="button" value="삭제" onclick="confirmDelete(${dto.bid})"/>
 			<input type="button" value="목록" onclick="javascript:window.location='list'"/>
 			</td>
 		</tr>
