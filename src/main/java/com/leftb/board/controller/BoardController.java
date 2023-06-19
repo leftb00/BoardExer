@@ -47,8 +47,7 @@ public class BoardController {
 		BoardDAO boardDao = new BoardDAO();
 		String bid = request.getParameter("bid");
 
-		boardDao.uphit(bid);
-		BoardDTO dto = boardDao.view(bid);
+		BoardDTO dto = boardDao.view(bid, true);
 		model.addAttribute("dto", dto);
 
 		return "view";
@@ -59,7 +58,7 @@ public class BoardController {
 		BoardDAO boardDao = new BoardDAO();
 		String bid = request.getParameter("bid");
 
-		BoardDTO dto = boardDao.view(bid);
+		BoardDTO dto = boardDao.view(bid, false);
 		model.addAttribute("dto", dto);
 
 		return "modify_form";

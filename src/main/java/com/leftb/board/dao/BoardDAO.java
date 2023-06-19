@@ -94,7 +94,7 @@ public class BoardDAO {
 		return board_list;
 	}
 
-	public BoardDTO view(String bid) {
+	public BoardDTO view(String bid, boolean uphit) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -102,8 +102,18 @@ public class BoardDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT bid,bname,btitle,bcontent,bdate,bhit "
-					   + "FROM mvc_board WHERE bid=?";
+			String sql;
+
+			if(uphit) {
+				sql = "UPDATE mvc_board SET bhit=bhit+1 WHERE bid=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, bid);
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+
+			sql = "SELECT bid,bname,btitle,bcontent,bdate,bhit "
+				+ "FROM mvc_board WHERE bid=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, bid);
@@ -189,7 +199,7 @@ public class BoardDAO {
 			}
 		}
 	}
-
+/*
 	public void uphit(String bid) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -215,4 +225,5 @@ public class BoardDAO {
 			}
 		}
 	}
+*/
 }
